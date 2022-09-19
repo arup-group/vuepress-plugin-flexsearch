@@ -16,6 +16,9 @@ const DEFAULT_SEARCH_RESULT_LENGTH = 60;
 module.exports = (options) => ({
   extendPageData($page) {
     $page.content = getPageText($page, options.noExtraSpaceAfterHtmlTag);
+    const section_path = (/[^\/]+/.exec($page.regularPath) || ["Home"])[0]
+    // if there is no nicely formated text for the section in the plugin options, split into words and make title case
+    $page.section = options['section_names'][section_path] || section_path.split(/[\s-_]/).map(w => w[0].toUpperCase()+w.slice(1)).join(' ')
   },
   alias: {
     "@SearchBox": path.resolve(__dirname, "src", "SearchBox.vue"),

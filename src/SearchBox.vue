@@ -35,7 +35,7 @@
           @click.prevent
         >
           <span
-            v-html="s.title || s.regularPath"
+            v-html="`${s.section}: ${s.title}` || s.regularPath"
             class="suggestion__title"
           ></span>
           <span v-html="s.text" class="suggestion__result"></span>
@@ -58,6 +58,7 @@ SEARCH_OPTIONS
 SEARCH_RESULT_LENGTH
 SEARCH_SPLIT_HIGHLIGHTED_WORDS
 */
+
 export default {
   extends: VuepressSearchBox,
   data () {
@@ -65,7 +66,6 @@ export default {
       index: null,
     }
   },
-
   computed: {
     // Override @vuepress/plugin-search/SearchBox.vue
     suggestions () {
