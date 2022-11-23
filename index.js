@@ -23,6 +23,16 @@ module.exports = (options) => ({
   alias: {
     "@SearchBox": path.resolve(__dirname, "src", "SearchBox.vue"),
   },
+  clientDynamicModules: () => {
+    const hooks = options.hooks || { }
+    const nullHook = () => {}
+    return {
+      name: "select-hooks.js",
+      content: `export default {
+        onPageChange: ${hooks.onPageChange || nullHook}
+      }`
+    };
+  },
   define: {
     SEARCH_OPTIONS: options.search_options || defaultSearchOptions,
     SEARCH_MAX_SUGGESTIONS: options.maxSuggestions || 10,

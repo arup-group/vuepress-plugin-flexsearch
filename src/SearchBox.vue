@@ -49,6 +49,7 @@
 import VuepressSearchBox from "@vuepress/plugin-search/SearchBox.vue";
 import Flexsearch from "flexsearch";
 import { highlightText } from "./utils";
+import hooks from '@dynamic/select-hooks';
 
 /* global
 SEARCH_MAX_SUGGESTIONS
@@ -105,6 +106,7 @@ export default {
       const path = this.suggestions[i].path
 
       if (this.$route.path !== path) {
+        hooks.onPageChange(this.query, this.$route.path, path);
         this.$router.push(this.suggestions[i].path)
       }
 
