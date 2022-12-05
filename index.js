@@ -29,7 +29,7 @@ module.exports = (options) => ({
     return {
       name: "select-hooks.js",
       content: `export default {
-        onPageChange: ${hooks.onPageChange || nullHook}
+        onSelectSearchBox: ${hooks.onSelectSearchBox || nullHook}
       }`
     };
   },
