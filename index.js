@@ -23,6 +23,17 @@ module.exports = (options) => ({
   alias: {
     "@SearchBox": path.resolve(__dirname, "src", "SearchBox.vue"),
   },
+  // implementation based on https://github.com/z3by/vuepress-plugin-flexsearch/pull/37
+  clientDynamicModules: () => {
+    const hooks = options.hooks || { }
+    const nullHook = () => {}
+    return {
+      name: "select-hooks.js",
+      content: `export default {
+        beforeNavToSelectedSuggestion: ${hooks.beforeNavToSelectedSuggestion || nullHook}
+      }`
+    };
+  },
   define: {
     SEARCH_OPTIONS: options.search_options || defaultSearchOptions,
     SEARCH_MAX_SUGGESTIONS: options.maxSuggestions || 10,
