@@ -106,7 +106,7 @@ export default {
       const path = this.suggestions[i].path
 
       if (this.$route.path !== path) {
-        hooks.onSelectSearchBox(this.query, this.$route.path, path);
+        hooks.beforeNavToSelectedSuggestion(this.query, this.$route.path, path);
         this.$router.push(this.suggestions[i].path)
       }
 

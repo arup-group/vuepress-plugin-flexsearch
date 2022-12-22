@@ -29,7 +29,7 @@ module.exports = (options) => ({
     return {
       name: "select-hooks.js",
       content: `export default {
-        onSelectSearchBox: ${hooks.onSelectSearchBox || nullHook}
+        beforeNavToSelectedSuggestion: ${hooks.beforeNavToSelectedSuggestion || nullHook}
       }`
     };
   },
