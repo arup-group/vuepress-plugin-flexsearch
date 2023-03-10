@@ -103,10 +103,25 @@ export default {
       if (!this.showSuggestions) {
         return
       }
-      const path = this.suggestions[i].path
 
-      if (this.$route.path !== path) {
-        hooks.beforeNavToSelectedSuggestion(this.query, this.$route.path, path);
+      if (this.$route.path !== this.suggestions[i].path) {
+        let path = ''
+        let currentPath = ''
+
+        // Include domain in route paths
+        if (typeof window !== 'undefined'){
+          let domain = window.location.href
+          if (domain.endsWith('/')){
+            domain = domain.slice(0, -1)
+          }
+
+          path += domain
+          currentPath += domain
+        }
+
+        path += this.suggestions[i].path
+        currentPath += this.$route.path
+        hooks.beforeNavToSelectedSuggestion(this.query, currentPath, path, i + 1);
         this.$router.push(this.suggestions[i].path)
       }
 
