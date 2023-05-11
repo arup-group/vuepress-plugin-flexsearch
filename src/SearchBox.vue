@@ -110,7 +110,7 @@ export default {
 
         // Include domain in route paths
         if (typeof window !== 'undefined'){
-          let domain = window.location.href
+          let domain = window.location.origin
           if (domain.endsWith('/')){
             domain = domain.slice(0, -1)
           }
