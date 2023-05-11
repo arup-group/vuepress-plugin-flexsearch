@@ -117,10 +117,14 @@ export default {
 
           path += domain
           currentPath += domain
+          console.log("path: " + path)
+          console.log("current path: " + currentPath)
         }
 
         path += this.suggestions[i].path
         currentPath += this.$route.path
+        console.log("path: " + path)
+        console.log("current path: " + currentPath)
         hooks.beforeNavToSelectedSuggestion(this.query, currentPath, path, i + 1);
         this.$router.push(this.suggestions[i].path)
       }
